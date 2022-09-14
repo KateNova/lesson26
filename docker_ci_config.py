@@ -1,7 +1,7 @@
 class Config(object):
     DEBUG = False
     SECRET_HERE = '249y823r9v8238r9u'
-    SQLALCHEMY_DATABASE_URI = 'postgresql://$DB_USER:$DB_PASSWORD@postgres/$DB_NAME'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://$DB_USER:$DB_PASSWORD@pg/$DB_NAME'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     PWD_HASH_SALT = b'HfdsfsnmDRsds1!834'
     PWD_HASH_ITERATIONS = 100_000
