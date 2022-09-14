@@ -44,4 +44,5 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd flask-app
+            echo ${{ secrets.SSH_PASSWORD }} | sudo -S rm -rf pg_data
             echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker-compose up -d
