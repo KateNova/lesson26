@@ -1,0 +1,39 @@
+version: "3.10"
+
+services:
+  api:
+    build:
+      context: .
+    image: novakate/skypro_lesson26
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker_config.py:/code/config.py
+    depends_on:
+      pg:
+        condition: service_healthy
+      create_db:
+        condition: service_completed_successfully
+  create_db:
+    build:
+      context: .
+    image: novakate/skypro_lesson26
+    depends_on:
+      pg:
+        condition: service_healthy
+    volumes:
+      - ./docker_config.py:/code/config.py
+    command: python3 create_db.py
+  pg:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: $DB_USER
+      POSTGRES_PASSWORD: $DB_PASSWORD
+      POSTGRES_DB: $DB_NAME
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
