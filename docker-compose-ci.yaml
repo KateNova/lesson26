@@ -2,8 +2,6 @@ version: "3.10"
 
 services:
   api:
-    build:
-      context: .
     image: novakate/skypro_lesson26:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     ports:
       - "80:80"
@@ -15,8 +13,6 @@ services:
       create_db:
         condition: service_completed_successfully
   create_db:
-    build:
-      context: .
     image: novakate/skypro_lesson26:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     depends_on:
       pg:
