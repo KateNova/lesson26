@@ -1,9 +1,10 @@
-version: "3.9"
+version: "3.10"
 
 services:
   api:
     build:
       context: .
+    image: novakate/skypro_lesson26
     ports:
       - "80:80"
     volumes:
@@ -16,13 +17,13 @@ services:
   create_db:
     build:
       context: .
+    image: novakate/skypro_lesson26
     depends_on:
       pg:
         condition: service_healthy
     volumes:
       - ./docker_config.py:/code/config.py
-    command:
-      - python create_db.py
+    command: python3 create_db.py
   pg:
     image: postgres:latest
     environment:
