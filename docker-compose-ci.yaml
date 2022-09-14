@@ -4,7 +4,7 @@ services:
   api:
     build:
       context: .
-    image: novakate/skypro_lesson26
+    image: novakate/skypro_lesson26:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     ports:
       - "80:80"
     volumes:
@@ -17,7 +17,7 @@ services:
   create_db:
     build:
       context: .
-    image: novakate/skypro_lesson26
+    image: novakate/skypro_lesson26:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     depends_on:
       pg:
         condition: service_healthy
