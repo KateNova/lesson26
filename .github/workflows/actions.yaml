@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_and_push
     env:
-      DB_USER: postgres
+      DB_USER: ${{ secrets.DB_USER }}
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       DB_NAME: ${{ secrets.DB_NAME }}
     steps:
@@ -36,5 +36,3 @@ jobs:
           source: "deploy/docker-compose.yaml,deploy/docker_config.py"
           target: "flask-app"
           strip_components: 1
-
-dckr_pat_e0aS2oGVjsQbcU1ISEtgcXwIxmM
